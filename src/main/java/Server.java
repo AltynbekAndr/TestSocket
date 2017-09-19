@@ -1,47 +1,42 @@
-import java.io.*;
-import java.net.*;
+import java.awt.HeadlessException;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
 
-public class Server {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("Welcome to Server side");
-        BufferedReader in = null;
-        PrintWriter    out= null;
+public class Server implements Runnable{
+    ServerSocket socket=null;
+    Socket socket2=null;
+    ObjectOutputStream out = null;
 
-        ServerSocket servers = null;
-        Socket       fromclient = null;
-
-        // create server socket
+    @Override
+    public void run() {
         try {
-            servers = new ServerSocket(4444);
+            socket = new ServerSocket(5555);    
+            socket2 = socket.accept();
+            DataOutputStream dt = new DataOutputStream(new ObjectOutputStream(socket2.getOutputStream()));
+            while(true){           
+
+                dt.write(21312333);
+               
+            }
+
+
+
+
+        } catch (UnknownHostException e) {
         } catch (IOException e) {
-            System.out.println("Couldn't listen to port 4444");
-            System.exit(-1);
-        }
+        } catch (HeadlessException e) {
 
-        try {
-            System.out.print("Waiting for a client...");
-            fromclient= servers.accept();
-            System.out.println("Client connected");
-        } catch (IOException e) {
-            System.out.println("Can't accept");
-            System.exit(-1);
-        }
 
-        in  = new BufferedReader(new
-                InputStreamReader(fromclient.getInputStream()));
-        out = new PrintWriter(fromclient.getOutputStream(),true);
-        String         input,output;
-
-        System.out.println("Wait for messages");
-        while ((input = in.readLine()) != null) {
-            if (input.equalsIgnoreCase("exit")) break;
-            out.println("S ::: "+input);
-            System.out.println(input);
-        }
-        out.close();
-        in.close();
-        fromclient.close();
-        servers.close();
+        } 
     }
+
 }
