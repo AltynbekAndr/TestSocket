@@ -1,4 +1,3 @@
-package paket;
 
 import java.awt.HeadlessException;
 import java.io.DataInputStream;
