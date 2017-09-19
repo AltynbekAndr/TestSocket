@@ -24,7 +24,7 @@ public class Server implements Runnable{
     @Override
     public void run() {
         try {
-            socket = new ServerSocket(2344);    
+            socket = new ServerSocket(54519);    
             socket2 = socket.accept();
             DataOutputStream dt = new DataOutputStream(new ObjectOutputStream(socket2.getOutputStream()));
             while(true){           
