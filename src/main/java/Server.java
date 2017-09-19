@@ -15,6 +15,11 @@ public class Server implements Runnable{
     ServerSocket socket=null;
     Socket socket2=null;
     ObjectOutputStream out = null;
+    public static void main(String[] args){
+		Thread t = new Thread(new Server());
+		t.start();
+		 }
+	}
 
     @Override
     public void run() {
