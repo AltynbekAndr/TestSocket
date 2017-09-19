@@ -1,3 +1,5 @@
+package paket;
+
 import java.awt.HeadlessException;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,7 +20,6 @@ public class Server implements Runnable{
     public static void main(String[] args){
 		Thread t = new Thread(new Server());
 		t.start();
-		 }
 	}
 
     @Override
@@ -45,3 +46,4 @@ public class Server implements Runnable{
     }
 
 }
+
